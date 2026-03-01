@@ -12,9 +12,10 @@ export default function Home() {
       />
 
 
-      {/* <div className="absolute inset-0 flex items-flex-end justify-center pt-20">
-        <div className="text-sm font-light text-red-500">ValMia</div>
-      </div> */}
+      {/* Logo top-center */}
+      <div className="absolute top-[20px] left-0 right-0 flex justify-center">
+        <img src="/logo.svg" alt="Logo" className="h-6 w-auto" />
+      </div>
 
       {/* Center mockup */}
       <div className="absolute inset-0 flex items-center justify-center">

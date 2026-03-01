@@ -22,7 +22,7 @@ export default function Home() {
         <img src="/MockUp.png" alt="MockUp" className="max-h-[60vh] max-w-[60vw] object-contain" />
       </div>
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-        <div className="mt-[70vh] text-white text-sm font-light tracking-wide drop-shadow-lg" >
+        <div className="mt-[55vh] md:mt-[70vh]  text-white text-sm font-light tracking-wide drop-shadow-lg" >
           coming soon ...
         </div>
       </div>

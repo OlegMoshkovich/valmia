@@ -1,33 +1,45 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(mq.matches);
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktop) return;
     const video = videoRef.current;
     if (!video) return;
     video.muted = true;
-    const tryPlay = () => video.play().catch(() => {});
-    tryPlay();
-    document.addEventListener("touchstart", tryPlay, { once: true });
-    return () => document.removeEventListener("touchstart", tryPlay);
-  }, []);
+    video.play().catch(() => {});
+  }, [isDesktop]);
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        controls={false}
-        className="absolute top-0 left-0 w-full object-cover"
-        style={{ height: "110%", WebkitMediaControls: "none" } as React.CSSProperties}
-        src="/background.mp4"
-      />
+      {isDesktop ? (
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          controls={false}
+          className="absolute top-0 left-0 w-full object-cover"
+          style={{ height: "110%", WebkitMediaControls: "none" } as React.CSSProperties}
+          src="/background.mp4"
+        />
+      ) : (
+        <img
+          src="/background_1.jpeg"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      )}
 
 
       {/* Logo top-center */}

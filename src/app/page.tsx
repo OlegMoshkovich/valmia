@@ -53,7 +53,7 @@ export default function Home() {
       </div>
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
         <div className="mt-[55vh] md:mt-[70vh] text-white text-sm font-light tracking-wide drop-shadow-lg font-taviraj">
-        Mir chömed bald ...
+        coming soon ...
         </div>
       </div>
 

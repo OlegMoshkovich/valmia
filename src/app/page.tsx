@@ -6,6 +6,7 @@ export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
@@ -18,6 +19,29 @@ export default function Home() {
     if (!video) return;
     video.muted = true;
     video.play().catch(() => {});
+
+    const handleEnded = () => {
+      let lastTime = performance.now();
+      const step = (now: number) => {
+        const v = videoRef.current;
+        if (!v) return;
+        const delta = (now - lastTime) / 1000;
+        lastTime = now;
+        v.currentTime = Math.max(0, v.currentTime - delta);
+        if (v.currentTime <= 0) {
+          v.play().catch(() => {});
+          return;
+        }
+        rafRef.current = requestAnimationFrame(step);
+      };
+      rafRef.current = requestAnimationFrame(step);
+    };
+
+    video.addEventListener("ended", handleEnded);
+    return () => {
+      video.removeEventListener("ended", handleEnded);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, [isDesktop]);
 
   return (
@@ -27,7 +51,6 @@ export default function Home() {
           ref={videoRef}
           autoPlay
           muted
-          loop
           playsInline
           controls={false}
           className="absolute top-0 left-0 w-full object-cover"

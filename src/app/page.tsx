@@ -77,7 +77,7 @@ export default function Home() {
               A quiet companion for those who love their village
             </p>
             <p className="text-base font-light leading-relaxed" style={{ color: "#4a4845" }}>
-              Valmia connects residents, second-home owners, and visitors through local events, seasonal guides, and genuine community, without the noise of mass tourism platforms.
+              ValMia connects residents, second-home owners, and visitors through local events, seasonal guides, and genuine community, without the noise of mass tourism platforms.
             </p>
           </div>
         </div>

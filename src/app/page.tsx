@@ -59,7 +59,7 @@ export default function Home() {
       {/* Concept overlay */}
       {overlay === "concept" && (
         <div className="absolute inset-0 overflow-y-auto" style={{ backgroundColor: "#efede1", zIndex: 50 }}>
-          <div className="min-h-full px-12 py-8 max-w-7xl mx-auto">
+          <div className="min-h-full px-6 md:px-12 py-8 pb-24 md:pb-12 max-w-7xl mx-auto">
             <div className="flex justify-between items-start mb-6" style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}>
               <span className="text-sm">Our current concepts</span>
               <button
@@ -72,21 +72,21 @@ export default function Home() {
             </div>
             <hr style={{ borderColor: "#c8c4b4" }} className="mb-10" />
 
-            <h1 className="text-5xl font-light leading-tight mb-16 max-w-2xl" style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}>
-              A Calm Companion for<br />Residents and Visitors
+            <h1 className="text-3xl md:text-5xl font-light leading-tight mb-10 md:mb-16" style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}>
+              A Calm Companion for Residents and Visitors
             </h1>
 
-            <div className="grid grid-cols-2 gap-16 mb-20">
+            <div className="flex flex-col md:grid md:grid-cols-2 md:gap-16 gap-10 mb-16">
               <div>
-                <h2 className="text-2xl font-light mb-6" style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}>
-                  Local and<br />Seasonal living
+                <h2 className="text-xl md:text-2xl font-light mb-4" style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}>
+                  Local and Seasonal living
                 </h2>
                 <p className="text-base font-light leading-relaxed" style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}>
                   A curated layer that reflects the place: essentials nearby, seasonal guides and nature cues support a slower, more grounded way of living | helping residents and visitors make the most of the lake and forest as part of everyday life.
                 </p>
               </div>
               <div>
-                <h2 className="text-2xl font-light mb-6" style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}>
+                <h2 className="text-xl md:text-2xl font-light mb-4" style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}>
                   Events
                 </h2>
                 <p className="text-base font-light leading-relaxed" style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}>
@@ -98,12 +98,12 @@ export default function Home() {
             <hr style={{ borderColor: "#c8c4b4" }} className="mb-10" />
 
             {/* Possible Functions */}
-            <h1 className="text-5xl font-light leading-tight mb-12" style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}>
+            <h1 className="text-3xl md:text-5xl font-light leading-tight mb-10 md:mb-12" style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}>
               Possible Functions Supporting Village Life
             </h1>
 
             {/* Top row */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-10 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
               {[
                 {
                   title: "Local Conditions & Orientation",
@@ -137,7 +137,7 @@ export default function Home() {
             </div>
 
             {/* Bottom row */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               {[
                 {
                   title: "Neighbour Support & Everyday Help",
@@ -169,7 +169,7 @@ export default function Home() {
       )}
 
       {/* Footer */}
-      <div className="absolute bottom-0 left-0 right-0 px-8 pb-5" style={{ zIndex: 5 }}>
+      <div className="absolute bottom-0 left-0 right-0 px-8 pb-20 md:pb-5" style={{ zIndex: 5 }}>
         <div className="flex justify-between items-center pt-4" style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}>
           <span className="text-xs tracking-wide">ValMia · Zurich</span>
           <a href="mailto:jasmin@valmia.ch" className="text-xs tracking-wide hover:opacity-60 transition-opacity" style={{ color: "#4a4845" }}>
@@ -181,7 +181,7 @@ export default function Home() {
       {/* Mission overlay */}
       {overlay === "mission" && (
         <div className="absolute inset-0 overflow-y-auto" style={{ backgroundColor: "#efede1", zIndex: 50 }}>
-          <div className="min-h-full px-6 md:px-12 py-8 max-w-7xl mx-auto">
+          <div className="min-h-full px-6 md:px-12 py-8 pb-24 md:pb-12 max-w-7xl mx-auto">
             <div className="flex justify-between items-start mb-6" style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}>
               <span className="text-sm">Mission</span>
               <button

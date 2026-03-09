@@ -18,10 +18,10 @@ export default function Home() {
 
       {/* Center mockup */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <img src="/MockUp.png" alt="MockUp" className="max-h-[60vh] w-[90vw] md:max-w-[60vw] md:w-auto object-contain" />
+        <img src="/MockUp.png" alt="MockUp" className="max-h-[60vh] w-[90vw] md:max-w-[60vw] md:w-auto object-contain -translate-y-10 md:translate-y-0" />
       </div>
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-        <div className="mt-[55vh] md:mt-[70vh] text-md font-normal tracking-wide" style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}>
+        <div className="mt-[calc(55vh-20px)] md:mt-[70vh] text-md font-normal tracking-wide" style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}>
           coming soon ...
         </div>
       </div>

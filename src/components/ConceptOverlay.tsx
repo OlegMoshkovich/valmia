@@ -80,7 +80,7 @@ export default function ConceptOverlay({ onClose }: ConceptOverlayProps) {
           <span className="text-sm">Our current concepts</span>
           <button
             onClick={onClose}
-            className="text-sm tracking-widest uppercase opacity-40 hover:opacity-80 transition-opacity"
+            className="text-sm tracking-widest font-bold uppercase opacity-40 hover:opacity-80 transition-opacity"
             style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}
           >
             Close

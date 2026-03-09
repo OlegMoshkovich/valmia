@@ -181,7 +181,7 @@ export default function Home() {
       {/* Mission overlay */}
       {overlay === "mission" && (
         <div className="absolute inset-0 overflow-y-auto" style={{ backgroundColor: "#efede1", zIndex: 50 }}>
-          <div className="min-h-full px-12 py-8 max-w-7xl mx-auto">
+          <div className="min-h-full px-6 md:px-12 py-8 max-w-7xl mx-auto">
             <div className="flex justify-between items-start mb-6" style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}>
               <span className="text-sm">Mission</span>
               <button
@@ -195,11 +195,11 @@ export default function Home() {
             <hr style={{ borderColor: "#c8c4b4" }} className="mb-10" />
 
             {/* Headline + tagline */}
-            <div className="grid grid-cols-2 gap-16 mb-16">
-              <h1 className="text-5xl font-light leading-tight" style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}>
-                Strengthening Village<br />Life & Tourism Together
+            <div className="flex flex-col md:grid md:grid-cols-2 md:gap-16 mb-12">
+              <h1 className="text-3xl md:text-5xl font-light leading-tight mb-4 md:mb-0" style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}>
+                Strengthening Village Life & Tourism Together
               </h1>
-              <div className="flex items-start pt-2">
+              <div className="flex items-start md:pt-2">
                 <p className="text-base font-light leading-relaxed" style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}>
                   Small alpine destinations are evolving, from places people visit to places people feel connected to.
                 </p>
@@ -207,11 +207,11 @@ export default function Home() {
             </div>
 
             {/* Image + body */}
-            <div className="grid grid-cols-2 gap-16 mb-20">
+            <div className="flex flex-col md:grid md:grid-cols-2 md:gap-16 mb-16 gap-8">
               <div className="rounded-lg overflow-hidden">
                 <img src="/mission.png" alt="Skiers in the mountains" className="w-full h-auto" />
               </div>
-              <div className="flex flex-col justify-center gap-8">
+              <div className="flex flex-col justify-center gap-6">
                 <p className="text-base leading-relaxed" style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}>
                   Connecting visitors with locals can be <strong style={{ color: "#2c2b28" }}>extremely valuable for small touristic destinations.</strong>{" "}
                   Especially mountain villages that are perfectly positioned to create a next generation of touristic experiences.
@@ -225,18 +225,18 @@ export default function Home() {
             <hr style={{ borderColor: "#c8c4b4" }} className="mb-10" />
 
             {/* Opportunity section */}
-            <div className="grid grid-cols-2 gap-16 mb-16">
-              <h1 className="text-5xl font-light leading-tight" style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}>
-                The Opportunity<br />Centered on Connection
+            <div className="flex flex-col md:grid md:grid-cols-2 md:gap-16 mb-12">
+              <h1 className="text-3xl md:text-5xl font-light leading-tight mb-4 md:mb-0" style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}>
+                The Opportunity Centered on Connection
               </h1>
-              <div className="flex items-start pt-2">
+              <div className="flex items-start md:pt-2">
                 <p className="text-base font-light leading-relaxed" style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}>
                   Human Connection creates value both socially and economically.
                 </p>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-16">
+            <div className="flex flex-col md:grid md:grid-cols-2 md:gap-16 gap-8">
               <div className="rounded-lg overflow-hidden">
                 <img src="/opportunity.png" alt="Hikers on a mountain" className="w-full h-auto" />
               </div>

@@ -11,7 +11,7 @@ const linkStyle = { fontFamily: "var(--font-cormorant)", color: "#2c2b28" };
 export default function Navbar({ lang, onToggle, transparent }: NavbarProps) {
   return (
     <div
-      className="fixed top-0 left-0 right-0 flex items-center px-8 h-[60px] transition-colors duration-300"
+      className="fixed top-0 left-0 right-0 flex items-center px-6 md:px-12 h-[60px] transition-colors duration-300"
       style={{
         backgroundColor: transparent ? "transparent" : "#efede1",
         zIndex: 100,

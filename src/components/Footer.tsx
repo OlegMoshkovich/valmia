@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="px-8 md:px-12 py-6">
+    <footer className="px-6 md:px-12 py-6">
       <div
         className="flex justify-between items-center"
         style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}

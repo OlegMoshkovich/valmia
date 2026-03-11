@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -199,24 +199,84 @@ function BulletItem({ text }: { text: string }) {
 
 export default function Home() {
   const [lang, setLang] = useState<"en" | "de">("de");
+  const [scrolled, setScrolled] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const rafRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > window.innerHeight - 60);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    video.play().catch(() => {});
+
+    const handleEnded = () => {
+      let lastTime = performance.now();
+      const step = (now: number) => {
+        const v = videoRef.current;
+        if (!v) return;
+        const delta = (now - lastTime) / 1000;
+        lastTime = now;
+        v.currentTime = Math.max(0, v.currentTime - delta);
+        if (v.currentTime <= 0) {
+          v.play().catch(() => {});
+          return;
+        }
+        rafRef.current = requestAnimationFrame(step);
+      };
+      rafRef.current = requestAnimationFrame(step);
+    };
+
+    video.addEventListener("ended", handleEnded);
+    return () => {
+      video.removeEventListener("ended", handleEnded);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
   const t = translations[lang];
 
   return (
     <div id="top" style={{ backgroundColor: "#efede1" }}>
-      <Navbar lang={lang} onToggle={() => setLang(lang === "en" ? "de" : "en")} />
+      <Navbar lang={lang} onToggle={() => setLang(lang === "en" ? "de" : "en")} transparent={!scrolled} />
 
       {/* Hero */}
-      <section className="min-h-screen flex flex-col items-center justify-center pt-[60px]">
-        <img
-          src="/MockUp.png"
-          alt="MockUp"
-          className="max-h-[55vh] w-[90vw] md:max-w-[55vw] md:w-auto object-contain"
+      <section className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center">
+        {/* Background video (desktop) */}
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          playsInline
+          className="hidden md:block absolute top-0 left-0 w-full object-cover"
+          style={{ height: "110%" }}
+          src="/background.mp4"
         />
-        <div
-          className="mt-8 text-base font-normal tracking-wide"
-          style={{ fontFamily: font, color: mid }}
-        >
-          {lang === "de" ? "demnächst ..." : "coming soon ..."}
+        {/* Background image (mobile) */}
+        <img
+          src="/background.jpeg"
+          alt=""
+          className="md:hidden absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Content */}
+        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen pt-[60px]">
+          <img
+            src="/MockUp.png"
+            alt="MockUp"
+            className="max-h-[55vh] w-[90vw] md:max-w-[55vw] md:w-auto object-contain -translate-y-6 md:translate-y-0"
+          />
+          <div
+            className="mt-8 text-base font-normal tracking-wide text-white drop-shadow"
+            style={{ fontFamily: font }}
+          >
+            {lang === "de" ? "demnächst ..." : "coming soon ..."}
+          </div>
         </div>
       </section>
 
@@ -254,14 +314,14 @@ export default function Home() {
       {/* The Opportunity */}
       <section className="px-6 md:px-12 py-16 md:py-24 max-w-5xl mx-auto">
         <h2
-          className="text-2xl md:text-4xl leading-tight mb-10"
-          style={{ fontFamily: font, color: dark, fontWeight: 600 }}
+          className="text-sm tracking-widest uppercase mb-3"
+          style={{ fontFamily: font, color: mid, fontWeight: 600 }}
         >
           {t.opportunity.title}
         </h2>
         <h3
-          className="text-lg md:text-2xl font-light mb-6"
-          style={{ fontFamily: font, color: dark, fontWeight: 600 }}
+          className="text-3xl md:text-5xl font-light leading-tight mb-10"
+          style={{ fontFamily: font, color: dark }}
         >
           {t.opportunity.subheading}
         </h3>
@@ -289,8 +349,8 @@ export default function Home() {
       {/* The Concept */}
       <section id="concept" className="px-6 md:px-12 py-16 md:py-24 max-w-5xl mx-auto">
         <h2
-          className="text-2xl md:text-4xl leading-tight mb-10"
-          style={{ fontFamily: font, color: dark, fontWeight: 600 }}
+          className="text-sm tracking-widest uppercase mb-3"
+          style={{ fontFamily: font, color: mid, fontWeight: 600 }}
         >
           {t.concept.title}
         </h2>
@@ -300,8 +360,8 @@ export default function Home() {
             style={{ borderColor: divider }}
           >
             <h3
-              className="text-lg md:text-2xl font-light mb-6"
-              style={{ fontFamily: font, color: dark, fontWeight: 600 }}
+              className="text-3xl md:text-5xl font-light leading-tight mb-10"
+              style={{ fontFamily: font, color: dark }}
             >
               {t.concept.leftHeading}
             </h3>
@@ -356,14 +416,14 @@ export default function Home() {
       {/* How It Works */}
       <section className="px-6 md:px-12 py-16 md:py-24 max-w-5xl mx-auto">
         <h2
-          className="text-2xl md:text-4xl leading-tight mb-10"
-          style={{ fontFamily: font, color: dark, fontWeight: 600 }}
+          className="text-sm tracking-widest uppercase mb-3"
+          style={{ fontFamily: font, color: mid, fontWeight: 600 }}
         >
           {t.howItWorks.title}
         </h2>
         <h3
-          className="text-lg md:text-2xl font-light mb-6"
-          style={{ fontFamily: font, color: dark, fontWeight: 600 }}
+          className="text-3xl md:text-5xl font-light leading-tight mb-10"
+          style={{ fontFamily: font, color: dark }}
         >
           {t.howItWorks.subheading}
         </h3>
@@ -410,14 +470,14 @@ export default function Home() {
       {/* Why It Matters */}
       <section className="px-6 md:px-12 py-16 md:py-24 max-w-5xl mx-auto">
         <h2
-          className="text-2xl md:text-4xl leading-tight mb-10"
-          style={{ fontFamily: font, color: dark, fontWeight: 600 }}
+          className="text-sm tracking-widest uppercase mb-3"
+          style={{ fontFamily: font, color: mid, fontWeight: 600 }}
         >
           {t.whyItMatters.title}
         </h2>
         <h3
-          className="text-lg md:text-2xl font-light mb-6"
-          style={{ fontFamily: font, color: dark, fontWeight: 600 }}
+          className="text-3xl md:text-5xl font-light leading-tight mb-10"
+          style={{ fontFamily: font, color: dark }}
         >
           {t.whyItMatters.subheading}
         </h3>
@@ -443,16 +503,16 @@ export default function Home() {
       <SectionDivider />
 
       {/* Who We Are */}
-      <section className="px-6 md:px-12 py-16 md:py-24 max-w-5xl mx-auto">
+      <section id="about" className="px-6 md:px-12 py-16 md:py-24 max-w-5xl mx-auto">
         <h2
-          className="text-2xl md:text-4xl leading-tight mb-10"
-          style={{ fontFamily: font, color: dark, fontWeight: 600 }}
+          className="text-sm tracking-widest uppercase mb-3"
+          style={{ fontFamily: font, color: mid, fontWeight: 600 }}
         >
           {t.whoWeAre.title}
         </h2>
         <h3
-          className="text-lg md:text-2xl font-light mb-6"
-          style={{ fontFamily: font, color: dark, fontWeight: 600 }}
+          className="text-3xl md:text-5xl font-light leading-tight mb-10"
+          style={{ fontFamily: font, color: dark }}
         >
           {t.whoWeAre.aboutHeading}
         </h3>
@@ -468,8 +528,8 @@ export default function Home() {
           ))}
         </div>
         <h3
-          className="text-lg md:text-2xl font-light mb-6"
-          style={{ fontFamily: font, color: dark, fontWeight: 600 }}
+          className="text-3xl md:text-5xl font-light leading-tight mb-10"
+          style={{ fontFamily: font, color: dark }}
         >
           {t.whoWeAre.contactHeading}
         </h3>

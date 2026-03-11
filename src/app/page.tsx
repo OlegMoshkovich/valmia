@@ -12,6 +12,10 @@ const font = "var(--font-cormorant)";
 
 const translations = {
   en: {
+    hero: {
+      welcome: "Welcome to ValMia",
+      subline: "A calm companion for Residents and Visitors",
+    },
     mission: {
       headline: "Strengthening the Connection Between Visitors and Village Life",
       subheadline: "Helping alpine destinations create meaningful connections between guests, residents, and local culture.",
@@ -98,6 +102,10 @@ const translations = {
     },
   },
   de: {
+    hero: {
+      welcome: "Willkommen bei ValMia",
+      subline: "Ein ruhiger Begleiter für Einheimische und Gäste",
+    },
     mission: {
       headline: "Tourismus und Dorfleben stärker verbinden",
       subheadline: "Eine Initiative für alpine Destinationen, die Gäste, Einheimische und lokale Kultur näher zusammenbringen möchte.",
@@ -277,18 +285,24 @@ export default function Home() {
           className="md:hidden absolute inset-0 w-full h-full object-cover"
         />
         {/* Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen pt-[60px]">
+        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen pt-[30px] px-6 text-center">
+          <h1
+            className="text-3xl md:text-6xl font-normal leading-tight mb-3 text-white drop-shadow"
+            style={{ fontFamily: font }}
+          >
+            {t.hero.welcome}
+          </h1>
+          <p
+            className="text-base md:text-2xl font-normal tracking-wide text-white drop-shadow opacity-100 mb-12"
+            style={{ fontFamily: font }}
+          >
+            {t.hero.subline}
+          </p>
           <img
             src="/MockUp.png"
             alt="MockUp"
-            className="max-h-[55vh] w-[90vw] md:max-w-[55vw] md:w-auto object-contain -translate-y-6 md:translate-y-0"
+            className="max-h-[34vh] w-[90vw] md:max-w-[50vw] md:w-auto object-contain"
           />
-          <div
-            className="mt-8 text-base font-normal tracking-wide text-white drop-shadow"
-            style={{ fontFamily: font }}
-          >
-            {lang === "de" ? "demnächst ..." : "coming soon ..."}
-          </div>
         </div>
       </section>
 

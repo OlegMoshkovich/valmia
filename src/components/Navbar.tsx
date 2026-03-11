@@ -54,7 +54,7 @@ export default function Navbar({ lang, onToggle, transparent }: NavbarProps) {
           </a>
         </div>
         <a href="#top">
-          <img src="/logo.svg" alt="Logo" className="h-6 w-auto" />
+          <img src="/logo.svg" alt="Logo" className="h-6 w-auto" style={{ opacity: transparent ? 0 : 1, transition: "opacity 0.3s" }} />
         </a>
         <div className="flex-1 flex justify-end">
           <button onClick={onToggle} className={linkClass} style={linkStyle}>

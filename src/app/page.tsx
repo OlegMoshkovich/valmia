@@ -301,7 +301,7 @@ export default function Home() {
           <img
             src="/MockUp.png"
             alt="MockUp"
-            className="max-h-[34vh] w-[90vw] md:max-w-[50vw] md:w-auto object-contain"
+            className="max-h-[45vh] w-[90vw] md:max-w-[50vw] md:w-auto object-contain"
           />
         </div>
       </section>

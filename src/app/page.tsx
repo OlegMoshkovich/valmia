@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ConceptOverlay from "@/components/ConceptOverlay";
 
 const dark = "#2c2b28";
 const mid = "#4a4845";
@@ -45,8 +46,13 @@ const translations = {
         "Discovering local experiences and informal activities",
         "Sharing local knowledge and traditions",
         "Connecting guests with people who love their village",
+        "Weather overview and local conditions",
+        "Community events and local gatherings",
+        "Neighbourhood support and everyday help",
+        "Digital pinboard and local marketplace",
       ],
       rightClosing: "Participation is always voluntary and designed to complement existing local structures.",
+      conceptLink: "Explore all features",
     },
     howItWorks: {
       title: "How It Works",
@@ -126,8 +132,13 @@ const translations = {
         "Lokale Aktivitäten oder informelle Begegnungen entdecken",
         "Wissen, Traditionen und Geschichten teilen",
         "Gäste mit Menschen verbinden, die ihre Region gerne weitergeben",
+        "Wetterübersicht und lokale Verhältnisse",
+        "Gemeinschaftsveranstaltungen und lokale Treffen",
+        "Nachbarschaftshilfe im Alltag",
+        "Digitales Schwarzes Brett und lokaler Marktplatz",
       ],
       rightClosing: "Die Teilnahme ist freiwillig und soll bestehende Strukturen ergänzen – nicht ersetzen.",
+      conceptLink: "Alle Funktionen erkunden",
     },
     howItWorks: {
       title: "Wie es funktioniert",
@@ -200,6 +211,7 @@ function BulletItem({ text }: { text: string }) {
 export default function Home() {
   const [lang, setLang] = useState<"en" | "de">("de");
   const [scrolled, setScrolled] = useState(false);
+  const [showConcept, setShowConcept] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const rafRef = useRef<number | null>(null);
 
@@ -348,23 +360,39 @@ export default function Home() {
 
       {/* The Concept */}
       <section id="concept" className="px-6 md:px-12 py-16 md:py-24 max-w-5xl mx-auto">
+        {/* Label */}
         <h2
           className="text-sm tracking-widest uppercase mb-3"
           style={{ fontFamily: font, color: mid, fontWeight: 600 }}
         >
           {t.concept.title}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2">
+        {/* Full-width heading */}
+        <h3
+          className="text-3xl md:text-5xl font-light leading-tight mb-6"
+          style={{ fontFamily: font, color: dark }}
+        >
+          {t.concept.leftHeading}
+        </h3>
+        {/* Goal text under heading, full width */}
+        <p
+          className="text-base md:text-lg font-light leading-relaxed mb-2"
+          style={{ fontFamily: font, color: mid }}
+        >
+          {t.concept.rightGoal}
+        </p>
+        <p
+          className="text-base md:text-lg font-light leading-relaxed mb-10"
+          style={{ fontFamily: font, color: mid }}
+        >
+          {t.concept.rightGoalDetail}
+        </p>
+        {/* Two columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 mb-10">
           <div
             className="pb-10 md:pb-0 md:pr-12 border-b md:border-b-0 md:border-r"
             style={{ borderColor: divider }}
           >
-            <h3
-              className="text-3xl md:text-5xl font-light leading-tight mb-10"
-              style={{ fontFamily: font, color: dark }}
-            >
-              {t.concept.leftHeading}
-            </h3>
             <p
               className="text-base md:text-lg font-light leading-relaxed mb-6"
               style={{ fontFamily: font, color: mid }}
@@ -379,36 +407,32 @@ export default function Home() {
           </div>
           <div className="pt-10 md:pt-0 md:pl-12">
             <p
-              className="text-base md:text-lg font-light leading-relaxed mb-2"
-              style={{ fontFamily: font, color: mid }}
-            >
-              {t.concept.rightGoal}
-            </p>
-            <p
-              className="text-base md:text-lg font-light leading-relaxed mb-6"
-              style={{ fontFamily: font, color: mid }}
-            >
-              {t.concept.rightGoalDetail}
-            </p>
-            <p
               className="text-base md:text-lg font-light leading-relaxed mb-4"
               style={{ fontFamily: font, color: mid }}
             >
               {t.concept.rightExamplesLabel}
             </p>
-            <ul className="space-y-4 mb-8">
+            <ul className="space-y-4 mb-6">
               {t.concept.rightBullets.map((item) => (
                 <BulletItem key={item} text={item} />
               ))}
             </ul>
-            <p
-              className="text-base md:text-lg font-light leading-relaxed"
-              style={{ fontFamily: font, color: mid }}
+            <button
+              onClick={() => setShowConcept(true)}
+              className="text-sm font-light underline underline-offset-4 opacity-60 hover:opacity-100 transition-opacity"
+              style={{ fontFamily: font, color: dark }}
             >
-              {t.concept.rightClosing}
-            </p>
+              {t.concept.conceptLink} →
+            </button>
           </div>
         </div>
+        {/* Closing text after both columns */}
+        <p
+          className="text-base md:text-lg font-light leading-relaxed"
+          style={{ fontFamily: font, color: mid }}
+        >
+          {t.concept.rightClosing}
+        </p>
       </section>
 
       <SectionDivider />
@@ -560,6 +584,8 @@ export default function Home() {
       </section>
 
       <Footer />
+
+      {showConcept && <ConceptOverlay onClose={() => setShowConcept(false)} lang={lang} />}
     </div>
   );
 }

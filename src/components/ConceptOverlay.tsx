@@ -139,14 +139,16 @@ export default function ConceptOverlay({ onClose, lang }: ConceptOverlayProps) {
 
       {/* Panel: mobile = 90% wide centered card; desktop = full screen */}
       <div
-        className="fixed overflow-y-auto
-                    left-[5%] right-[5%] top-[5%] bottom-4 border border-[#c8c4b4]
-                    md:inset-0 md:rounded-none md:border-0"
+        className="fixed flex flex-col overflow-hidden
+                    left-[5%] right-[5%] top-[5%] bottom-4 border border-[#c8c4b4] rounded-xl
+                    md:inset-0 md:rounded-none md:border-0 md:overflow-visible"
         style={{ backgroundColor: "#efede1", zIndex: 160 }}
       >
-        <div className="min-h-full px-6 md:px-12 py-6 pb-16 md:py-8 md:pb-12 max-w-7xl mx-auto">
-
-          {/* Top bar */}
+        {/* Sticky top bar */}
+        <div
+          className="flex-shrink-0 px-6 md:px-12 pt-6 md:pt-8"
+          style={{ backgroundColor: "#efede1" }}
+        >
           <div
             className="flex justify-between items-start mb-6"
             style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}
@@ -160,7 +162,12 @@ export default function ConceptOverlay({ onClose, lang }: ConceptOverlayProps) {
               {t.close}
             </button>
           </div>
-          <hr style={{ borderColor: "#c8c4b4" }} className="mb-10" />
+          <hr style={{ borderColor: "#c8c4b4" }} />
+        </div>
+
+        {/* Scrollable content */}
+        <div className="flex-1 overflow-y-auto">
+        <div className="px-6 md:px-12 pt-10 pb-16 md:pb-12 max-w-7xl mx-auto">
 
           <h1
             className="text-3xl md:text-5xl font-light leading-tight mb-10 md:mb-16"
@@ -209,6 +216,7 @@ export default function ConceptOverlay({ onClose, lang }: ConceptOverlayProps) {
             ))}
           </div>
 
+        </div>
         </div>
       </div>
     </>

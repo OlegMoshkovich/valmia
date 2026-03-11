@@ -99,6 +99,14 @@ const translations = {
       contactLabel: "Contact:",
       contactName: null as string | null,
       contactEmail: "jasmin@valmia.ch",
+      form: {
+        namePlaceholder: "Your name",
+        emailPlaceholder: "Your email",
+        messagePlaceholder: "Your message",
+        submit: "Send message",
+        success: "Thank you — we'll be in touch.",
+        error: "Something went wrong. Please try again.",
+      },
     },
   },
   de: {
@@ -189,6 +197,14 @@ const translations = {
       contactLabel: "Kontakt:",
       contactName: "Jasmin zu Sayn-Wittgenstein" as string | null,
       contactEmail: "jasmin@valmia.ch",
+      form: {
+        namePlaceholder: "Ihr Name",
+        emailPlaceholder: "Ihre E-Mail",
+        messagePlaceholder: "Ihre Nachricht",
+        submit: "Nachricht senden",
+        success: "Vielen Dank — wir melden uns.",
+        error: "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+      },
     },
   },
 };
@@ -220,6 +236,8 @@ export default function Home() {
   const [lang, setLang] = useState<"en" | "de">("de");
   const [scrolled, setScrolled] = useState(false);
   const [showConcept, setShowConcept] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const videoRef = useRef<HTMLVideoElement>(null);
   const rafRef = useRef<number | null>(null);
 
@@ -581,19 +599,72 @@ export default function Home() {
               {text}
             </p>
           ))}
-          <div className="text-base md:text-lg font-light" style={{ fontFamily: font, color: mid }}>
-            <span>{t.whoWeAre.contactLabel} </span>
-            {t.whoWeAre.contactName && (
-              <span style={{ color: dark }}>{t.whoWeAre.contactName} · </span>
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
+              setFormStatus("sending");
+              try {
+                const res = await fetch("/api/contact", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(formData),
+                });
+                setFormStatus(res.ok ? "success" : "error");
+              } catch {
+                setFormStatus("error");
+              }
+            }}
+            className="space-y-4 pt-2"
+          >
+            <input
+              type="text"
+              required
+              placeholder={t.whoWeAre.form.namePlaceholder}
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="w-full bg-transparent border-b py-2 text-base font-light outline-none focus:border-opacity-100 transition-colors"
+              style={{ fontFamily: font, color: dark, borderColor: divider }}
+            />
+            <input
+              type="email"
+              required
+              placeholder={t.whoWeAre.form.emailPlaceholder}
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className="w-full bg-transparent border-b py-2 text-base font-light outline-none transition-colors"
+              style={{ fontFamily: font, color: dark, borderColor: divider }}
+            />
+            <textarea
+              required
+              rows={4}
+              placeholder={t.whoWeAre.form.messagePlaceholder}
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              className="w-full bg-transparent border-b py-2 text-base font-light outline-none resize-none transition-colors"
+              style={{ fontFamily: font, color: dark, borderColor: divider }}
+            />
+            {formStatus === "success" ? (
+              <p className="text-base font-light" style={{ fontFamily: font, color: mid }}>
+                {t.whoWeAre.form.success}
+              </p>
+            ) : (
+              <div className="flex items-center gap-6">
+                <button
+                  type="submit"
+                  disabled={formStatus === "sending"}
+                  className="text-base font-semibold tracking-wide underline underline-offset-4 hover:opacity-60 transition-opacity disabled:opacity-40"
+                  style={{ fontFamily: font, color: dark }}
+                >
+                  {formStatus === "sending" ? "..." : t.whoWeAre.form.submit}
+                </button>
+                {formStatus === "error" && (
+                  <p className="text-sm font-light" style={{ fontFamily: font, color: mid }}>
+                    {t.whoWeAre.form.error}
+                  </p>
+                )}
+              </div>
             )}
-            <a
-              href="mailto:jasmin@valmia.ch"
-              className="hover:opacity-60 transition-opacity"
-              style={{ color: dark }}
-            >
-              {t.whoWeAre.contactEmail}
-            </a>
-          </div>
+          </form>
         </div>
       </section>
 

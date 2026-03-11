@@ -1,35 +1,31 @@
-type Overlay = "mission" | "concept" | null;
+type Lang = "en" | "de";
 
 interface NavbarProps {
-  onOpen: (overlay: Overlay) => void;
+  lang: Lang;
+  onToggle: () => void;
 }
 
-const navLink = "text-sm font-bold tracking-widest uppercase opacity-60 hover:opacity-100 transition-opacity cursor-pointer";
-const navStyle = { fontFamily: "var(--font-cormorant)", color: "#2c2b28" };
+const toggleStyle = { fontFamily: "var(--font-cormorant)", color: "#2c2b28" };
 
-export default function Navbar({ onOpen }: NavbarProps) {
+export default function Navbar({ lang, onToggle }: NavbarProps) {
   return (
     <div
-      className="absolute top-0 left-0 right-0 flex items-center justify-between px-8 h-[60px]"
-      style={{ zIndex: 10 }}
+      className="fixed top-0 left-0 right-0 flex items-center px-8 h-[60px]"
+      style={{ backgroundColor: "#efede1", zIndex: 100 }}
     >
-      <a
-        href="#"
-        onClick={(e) => { e.preventDefault(); onOpen("mission"); }}
-        className={navLink}
-        style={navStyle}
-      >
-        Mission
+      <div className="flex-1" />
+      <a href="#top">
+        <img src="/logo.svg" alt="Logo" className="h-6 w-auto" />
       </a>
-      <img src="/logo.svg" alt="Logo" className="h-6 w-auto" />
-      <a
-        href="#"
-        onClick={(e) => { e.preventDefault(); onOpen("concept"); }}
-        className={navLink}
-        style={navStyle}
-      >
-        Concept
-      </a>
+      <div className="flex-1 flex justify-end">
+        <button
+          onClick={onToggle}
+          className="text-sm font-bold tracking-widest uppercase opacity-50 hover:opacity-100 transition-opacity"
+          style={toggleStyle}
+        >
+          {lang === "de" ? "EN" : "DE"}
+        </button>
+      </div>
     </div>
   );
 }

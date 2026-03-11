@@ -419,7 +419,7 @@ export default function Home() {
             </ul>
             <button
               onClick={() => setShowConcept(true)}
-              className="text-sm font-light underline underline-offset-4 opacity-60 hover:opacity-100 transition-opacity"
+              className="text-base font-semibold tracking-wide underline underline-offset-4 hover:opacity-60 transition-opacity"
               style={{ fontFamily: font, color: dark }}
             >
               {t.concept.conceptLink} →

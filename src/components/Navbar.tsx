@@ -6,10 +6,13 @@ interface NavbarProps {
   transparent?: boolean;
 }
 
-const linkClass = "text-sm font-bold tracking-widest uppercase opacity-50 hover:opacity-100 transition-opacity";
-const linkStyle = { fontFamily: "var(--font-cormorant)", color: "#2c2b28" };
+const linkClass = "text-sm font-black tracking-widest uppercase opacity-100 hover:underline transition-opacity";
 
 export default function Navbar({ lang, onToggle, transparent }: NavbarProps) {
+  const textColor = transparent ? "#ffffff" : "#2c2b28";
+  const linkStyle = { fontFamily: "var(--font-cormorant)", color: textColor, transition: "color 0.3s" };
+  const mobileLinkStyle = { fontFamily: "var(--font-cormorant)", color: "#2c2b28" };
+
   return (
     <>
       {/* Mobile: floating pill */}
@@ -23,7 +26,7 @@ export default function Navbar({ lang, onToggle, transparent }: NavbarProps) {
         }}
       >
         <div className="flex-1 flex justify-start">
-          <a href="#about" className={linkClass} style={linkStyle}>
+          <a href="#about" className={linkClass} style={mobileLinkStyle}>
             {lang === "de" ? "Über uns" : "About"}
           </a>
         </div>
@@ -31,7 +34,7 @@ export default function Navbar({ lang, onToggle, transparent }: NavbarProps) {
           <img src="/logo.svg" alt="Logo" className="h-5 w-auto" />
         </a>
         <div className="flex-1 flex justify-end">
-          <button onClick={onToggle} className={linkClass} style={linkStyle}>
+          <button onClick={onToggle} className={linkClass} style={mobileLinkStyle}>
             {lang === "de" ? "EN" : "DE"}
           </button>
         </div>

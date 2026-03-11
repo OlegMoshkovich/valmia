@@ -153,10 +153,10 @@ export default function ConceptOverlay({ onClose, lang }: ConceptOverlayProps) {
             className="flex justify-between items-start mb-6"
             style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}
           >
-            <span className="text-sm">{t.label}</span>
+            <span className="text-md">{t.label}</span>
             <button
               onClick={onClose}
-              className="text-sm tracking-widest font-bold uppercase opacity-40 hover:opacity-80 transition-opacity"
+              className="text-sm tracking-widest font-bold uppercase opacity-100 hover:underline transition-opacity"
               style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}
             >
               {t.close}

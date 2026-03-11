@@ -130,76 +130,87 @@ export default function ConceptOverlay({ onClose, lang }: ConceptOverlayProps) {
   const t = content[lang];
 
   return (
-    <div
-      className="fixed inset-0 overflow-y-auto"
-      style={{ backgroundColor: "#efede1", zIndex: 200 }}
-    >
-      <div className="min-h-full px-6 md:px-12 py-8 pb-24 md:pb-12 max-w-7xl mx-auto">
+    <>
+      {/* Mobile-only full-page dark backdrop */}
+      <div
+        className="md:hidden fixed inset-0"
+        style={{ backgroundColor: "rgba(44, 43, 40, 0.65)", zIndex: 150 }}
+      />
 
-        {/* Top bar */}
-        <div
-          className="flex justify-between items-start mb-6"
-          style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}
-        >
-          <span className="text-sm">{t.label}</span>
-          <button
-            onClick={onClose}
-            className="text-sm tracking-widest font-bold uppercase opacity-40 hover:opacity-80 transition-opacity"
+      {/* Panel: mobile = 90% wide centered card; desktop = full screen */}
+      <div
+        className="fixed overflow-y-auto
+                    left-[5%] right-[5%] top-[5%] bottom-4 border border-[#c8c4b4]
+                    md:inset-0 md:rounded-none md:border-0"
+        style={{ backgroundColor: "#efede1", zIndex: 160 }}
+      >
+        <div className="min-h-full px-6 md:px-12 py-6 pb-16 md:py-8 md:pb-12 max-w-7xl mx-auto">
+
+          {/* Top bar */}
+          <div
+            className="flex justify-between items-start mb-6"
+            style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}
+          >
+            <span className="text-sm">{t.label}</span>
+            <button
+              onClick={onClose}
+              className="text-sm tracking-widest font-bold uppercase opacity-40 hover:opacity-80 transition-opacity"
+              style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}
+            >
+              {t.close}
+            </button>
+          </div>
+          <hr style={{ borderColor: "#c8c4b4" }} className="mb-10" />
+
+          <h1
+            className="text-3xl md:text-5xl font-light leading-tight mb-10 md:mb-16"
             style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}
           >
-            {t.close}
-          </button>
+            {t.heading}
+          </h1>
+
+          <div className="flex flex-col md:grid md:grid-cols-2 md:gap-16 gap-10 mb-16">
+            {t.sections.map((section) => (
+              <div key={section.title}>
+                <h2
+                  className="text-xl md:text-2xl font-light mb-4"
+                  style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}
+                >
+                  {section.title}
+                </h2>
+                <p
+                  className="text-base font-light leading-relaxed"
+                  style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}
+                >
+                  {section.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <hr style={{ borderColor: "#c8c4b4" }} className="mb-10" />
+
+          <h1
+            className="text-3xl md:text-5xl font-light leading-tight mb-10 md:mb-12"
+            style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}
+          >
+            {t.functionsHeading}
+          </h1>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+            {t.columns.slice(0, 3).map((col) => (
+              <FunctionColumn key={col.title} {...col} />
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {t.columns.slice(3).map((col) => (
+              <FunctionColumn key={col.title} {...col} />
+            ))}
+          </div>
+
         </div>
-        <hr style={{ borderColor: "#c8c4b4" }} className="mb-10" />
-
-        <h1
-          className="text-3xl md:text-5xl font-light leading-tight mb-10 md:mb-16"
-          style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}
-        >
-          {t.heading}
-        </h1>
-
-        <div className="flex flex-col md:grid md:grid-cols-2 md:gap-16 gap-10 mb-16">
-          {t.sections.map((section) => (
-            <div key={section.title}>
-              <h2
-                className="text-xl md:text-2xl font-light mb-4"
-                style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}
-              >
-                {section.title}
-              </h2>
-              <p
-                className="text-base font-light leading-relaxed"
-                style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}
-              >
-                {section.body}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <hr style={{ borderColor: "#c8c4b4" }} className="mb-10" />
-
-        <h1
-          className="text-3xl md:text-5xl font-light leading-tight mb-10 md:mb-12"
-          style={{ fontFamily: "var(--font-cormorant)", color: "#2c2b28" }}
-        >
-          {t.functionsHeading}
-        </h1>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
-          {t.columns.slice(0, 3).map((col) => (
-            <FunctionColumn key={col.title} {...col} />
-          ))}
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {t.columns.slice(3).map((col) => (
-            <FunctionColumn key={col.title} {...col} />
-          ))}
-        </div>
-
       </div>
-    </div>
+    </>
   );
 }

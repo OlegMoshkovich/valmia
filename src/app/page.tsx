@@ -220,7 +220,7 @@ function SectionDivider() {
 function BulletItem({ text }: { text: string }) {
   return (
     <li
-      className="flex items-start gap-3 text-base md:text-lg font-light leading-relaxed"
+      className="flex items-start gap-3 text-lg md:text-xl font-light leading-relaxed"
       style={{ fontFamily: font, color: mid }}
     >
       <span
@@ -311,7 +311,7 @@ export default function Home() {
             {t.hero.welcome}
           </h1>
           <p
-            className="text-base md:text-2xl font-normal tracking-wide text-white drop-shadow opacity-100 mb-12"
+            className="text-lg md:text-2xl font-normal tracking-wide text-white drop-shadow opacity-100 mb-12"
             style={{ fontFamily: font }}
           >
             {t.hero.subline}
@@ -335,7 +335,7 @@ export default function Home() {
           {t.mission.headline}
         </h1>
         <p
-          className="text-base md:text-xl font-light leading-relaxed mb-10"
+          className="text-lg md:text-2xl font-light leading-relaxed mb-10"
           style={{ fontFamily: font, color: mid }}
         >
           {t.mission.subheadline}
@@ -344,7 +344,7 @@ export default function Home() {
           {t.mission.intro.map((text, i) => (
             <p
               key={i}
-              className="text-base md:text-lg font-light leading-relaxed"
+              className="text-lg md:text-xl font-light leading-relaxed"
               style={{ fontFamily: font, color: mid }}
             >
               {text}
@@ -370,7 +370,7 @@ export default function Home() {
           {t.opportunity.subheading}
         </h3>
         <p
-          className="text-base md:text-lg font-light leading-relaxed mb-6"
+          className="text-lg md:text-xl font-light leading-relaxed mb-6"
           style={{ fontFamily: font, color: mid }}
         >
           {t.opportunity.intro}
@@ -381,7 +381,7 @@ export default function Home() {
           ))}
         </ul>
         <p
-          className="text-base md:text-lg font-light leading-relaxed"
+          className="text-lg md:text-xl font-light leading-relaxed"
           style={{ fontFamily: font, color: mid }}
         >
           {t.opportunity.closing}
@@ -408,13 +408,13 @@ export default function Home() {
         </h3>
         {/* Goal text under heading, full width */}
         <p
-          className="text-base md:text-lg font-light leading-relaxed mb-2"
+          className="text-lg md:text-xl font-light leading-relaxed mb-2"
           style={{ fontFamily: font, color: mid }}
         >
           {t.concept.rightGoal}
         </p>
         <p
-          className="text-base md:text-lg font-light leading-relaxed mb-10"
+          className="text-lg md:text-xl font-light leading-relaxed mb-10"
           style={{ fontFamily: font, color: mid }}
         >
           {t.concept.rightGoalDetail}
@@ -426,7 +426,7 @@ export default function Home() {
             style={{ borderColor: divider }}
           >
             <p
-              className="text-base md:text-lg font-light leading-relaxed mb-6"
+              className="text-lg md:text-xl font-light leading-relaxed mb-6"
               style={{ fontFamily: font, color: mid }}
             >
               {t.concept.leftIntro}
@@ -439,7 +439,7 @@ export default function Home() {
           </div>
           <div className="pt-10 md:pt-0 md:pl-12">
             <p
-              className="text-base md:text-lg font-light leading-relaxed mb-4"
+              className="text-lg md:text-xl font-light leading-relaxed mb-4"
               style={{ fontFamily: font, color: mid }}
             >
               {t.concept.rightExamplesLabel}
@@ -451,7 +451,7 @@ export default function Home() {
             </ul>
             <button
               onClick={() => setShowConcept(true)}
-              className="text-base font-semibold tracking-wide underline underline-offset-4 hover:opacity-60 transition-opacity"
+              className="text-lg font-semibold tracking-wide underline underline-offset-4 hover:opacity-60 transition-opacity"
               style={{ fontFamily: font, color: dark }}
             >
               {t.concept.conceptLink} →
@@ -460,7 +460,7 @@ export default function Home() {
         </div>
         {/* Closing text after both columns */}
         <p
-          className="text-base md:text-lg font-light leading-relaxed"
+          className="text-lg md:text-xl font-light leading-relaxed"
           style={{ fontFamily: font, color: mid }}
         >
           {t.concept.rightClosing}
@@ -484,13 +484,13 @@ export default function Home() {
           {t.howItWorks.subheading}
         </h3>
         <p
-          className="text-base md:text-lg font-light leading-relaxed mb-4"
+          className="text-lg md:text-xl font-light leading-relaxed mb-4"
           style={{ fontFamily: font, color: mid }}
         >
           {t.howItWorks.intro}
         </p>
         <p
-          className="text-base md:text-lg font-light leading-relaxed mb-8"
+          className="text-lg md:text-xl font-light leading-relaxed mb-8"
           style={{ fontFamily: font, color: mid }}
         >
           {t.howItWorks.principlesLabel}
@@ -499,13 +499,13 @@ export default function Home() {
           {t.howItWorks.principles.map(({ title, desc }) => (
             <div key={title}>
               <h4
-                className="text-base md:text-lg leading-snug mb-1"
+                className="text-lg md:text-xl leading-snug mb-1"
                 style={{ fontFamily: font, color: dark, fontWeight: 600 }}
               >
                 {title}
               </h4>
               <p
-                className="text-base md:text-lg font-light leading-relaxed"
+                className="text-lg md:text-xl font-light leading-relaxed"
                 style={{ fontFamily: font, color: mid }}
               >
                 {desc}
@@ -514,7 +514,7 @@ export default function Home() {
           ))}
         </div>
         <p
-          className="text-base md:text-lg font-light leading-relaxed"
+          className="text-lg md:text-xl font-light leading-relaxed"
           style={{ fontFamily: font, color: mid }}
         >
           {t.howItWorks.closing}
@@ -538,7 +538,7 @@ export default function Home() {
           {t.whyItMatters.subheading}
         </h3>
         <p
-          className="text-base md:text-lg font-light leading-relaxed mb-6"
+          className="text-lg md:text-xl font-light leading-relaxed mb-6"
           style={{ fontFamily: font, color: mid }}
         >
           {t.whyItMatters.intro}
@@ -549,7 +549,7 @@ export default function Home() {
           ))}
         </ul>
         <p
-          className="text-base md:text-lg font-light leading-relaxed"
+          className="text-lg md:text-xl font-light leading-relaxed"
           style={{ fontFamily: font, color: mid }}
         >
           {t.whyItMatters.closing}
@@ -576,7 +576,7 @@ export default function Home() {
           {t.whoWeAre.aboutParagraphs.map((text, i) => (
             <p
               key={i}
-              className="text-base md:text-lg font-light leading-relaxed"
+              className="text-lg md:text-xl font-light leading-relaxed"
               style={{ fontFamily: font, color: mid }}
             >
               {text}
@@ -593,7 +593,7 @@ export default function Home() {
           {t.whoWeAre.contactParagraphs.map((text, i) => (
             <p
               key={i}
-              className="text-base md:text-lg font-light leading-relaxed"
+              className="text-lg md:text-xl font-light leading-relaxed"
               style={{ fontFamily: font, color: mid }}
             >
               {text}
@@ -622,7 +622,7 @@ export default function Home() {
               placeholder={t.whoWeAre.form.namePlaceholder}
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full bg-transparent border-b py-2 text-base font-light outline-none focus:border-opacity-100 transition-colors"
+              className="w-full bg-transparent border-b py-2 text-lg font-light outline-none focus:border-opacity-100 transition-colors"
               style={{ fontFamily: font, color: dark, borderColor: divider }}
             />
             <input
@@ -631,7 +631,7 @@ export default function Home() {
               placeholder={t.whoWeAre.form.emailPlaceholder}
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full bg-transparent border-b py-2 text-base font-light outline-none transition-colors"
+              className="w-full bg-transparent border-b py-2 text-lg font-light outline-none transition-colors"
               style={{ fontFamily: font, color: dark, borderColor: divider }}
             />
             <textarea
@@ -640,11 +640,11 @@ export default function Home() {
               placeholder={t.whoWeAre.form.messagePlaceholder}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full bg-transparent border-b py-2 text-base font-light outline-none resize-none transition-colors"
+              className="w-full bg-transparent border-b py-2 text-lg font-light outline-none resize-none transition-colors"
               style={{ fontFamily: font, color: dark, borderColor: divider }}
             />
             {formStatus === "success" ? (
-              <p className="text-base font-light" style={{ fontFamily: font, color: mid }}>
+              <p className="text-lg font-light" style={{ fontFamily: font, color: mid }}>
                 {t.whoWeAre.form.success}
               </p>
             ) : (
@@ -652,7 +652,7 @@ export default function Home() {
                 <button
                   type="submit"
                   disabled={formStatus === "sending"}
-                  className="text-base font-semibold tracking-wide underline underline-offset-4 hover:opacity-60 transition-opacity disabled:opacity-40"
+                  className="text-lg font-semibold tracking-wide underline underline-offset-4 hover:opacity-60 transition-opacity disabled:opacity-40"
                   style={{ fontFamily: font, color: dark }}
                 >
                   {formStatus === "sending" ? "..." : t.whoWeAre.form.submit}

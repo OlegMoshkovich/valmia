@@ -5,7 +5,7 @@ export default function Footer() {
         className="flex justify-between items-center"
         style={{ fontFamily: "var(--font-cormorant)", color: "#4a4845" }}
       >
-        <span className="text-xs tracking-wide">ValMia · Zurich</span>
+        <span className="text-xs tracking-wide">ValMia · Switzerland</span>
         <a
           href="mailto:jasmin@valmia.ch"
           className="text-xs tracking-wide hover:opacity-60 transition-opacity"

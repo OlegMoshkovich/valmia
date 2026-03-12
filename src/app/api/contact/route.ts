@@ -2,7 +2,7 @@ import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = process.env.VALMIA_RESEND_API_KEY;
   if (!apiKey) {
     return NextResponse.json({ error: "Email service not configured" }, { status: 503 });
   }
